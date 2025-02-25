@@ -1,120 +1,108 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaEye } from "react-icons/fa";
-import image1 from "../assets/vegan-food-nutrition-concept-cheerful-dark-skinned-woman-with-curly-hair-holds-bottle-fresh-almond-milk.jpg";
-import image3 from "../assets/young-woman-with-cocktail-yellow-background.jpg";
-import image5 from "../assets/photo-pleased-afro-american-woman-stands-with-closed-eyes-holds-two-ice-creams.jpg";
-import image6 from "../assets/pleased-dark-skinned-woman-holds-jars-organic-natural-yoghurt-ingredient-preparing-breakfast-concentrated-hat-toothy-smile-wears-green-t-shirt-people-healthy-nutrition-concept.jpg";
+import image1 from "../assets/milk.png";
+import image3 from "../assets/500ml.png";
+import image5 from "../assets/icecream.png";
+import image6 from "../assets/Tomato-Sauce-2.png";
+import image7 from "../assets/Lacto.png";
+import image9 from "../assets/Orange-2L-2.png";
+import image10 from "../assets/Peanut-Butter-2.png";
+import image11 from "../assets/Salad-Cream-780g-2.png";
+import image12 from "../assets/Quick-Brew-Tea-Bags-3.png";
 
-// Styled Components
 const Container = styled.div`
   display: flex;
-  flex-direction: column; // Stack sections vertically
-  height: 120vh;
+  flex-direction: column;
+  height: 100vh;
   padding: 50px;
-  position: relative;
-  overflow: hidden;
   color: black;
+  gap: 60px;
+  font-family: 'Marhey';
 `;
 
 const HeaderSection = styled.div`
-  text-align: center;
-  margin-bottom: 40px;
-`;
-
-const TopSection = styled.div`
   display: flex;
-  flex: 1; // Allow top section to grow
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
 `;
 
-const ImageContainer = styled(motion.div)`
+const ContentSection = styled.div`
+  display: flex;
+  flex-direction: row;
   flex: 1;
+`;
+
+const LeftSection = styled.div<{ backgroundColor: string }>`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: ${({ backgroundColor }) => backgroundColor};
+  border-radius: 15px;
+  padding: 20px;
+`;
+
+const RightSection = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+`;
+
+const ImageDisplay = styled(motion.img)`
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  border-radius: 15px;
+`;
+
+const Title = styled(motion.h1)`
+  font-size: 36px;
+  color: #283e7e;
+`;
+
+const Description = styled(motion.p)`
+  font-size: 18px;
+  color: #555;
+`;
+
+const PaginationContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
-
-  img {
-    width: 100%;
-    height: auto;
-    border-radius: 15px;
-    max-width: 400px;
-  }
+  gap: 10px;
+  margin-top: 10px;
 `;
 
-const LeftSection = styled.div`
-  flex: 1;
-  padding: 20px;
-  max-width: 400px;
-  font-family: 'Marhey';
+interface PaginationItemProps {
+  active: boolean;
+}
 
-  h1 {
-    font-size: 46px;
-    color: #fff;
-    margin-bottom: 10px;
-  }
-
-  p {
-    font-size: 18px;
-    color: #ddd;
-    margin-bottom: 20px;
-  }
-`;
-
-const CardContainer = styled.div`
-  display: flex;
-  gap: 20px;
-  margin-top: 20px;
-  z-index: 2;
-  font-family: 'Marhey';
-`;
-
-const Card = styled(motion.div)<{ isActive: boolean }>`
-  font-size: 5px;
-  font-weight: 100;
-  width: 150px;
-  height: 150px;
-  border-radius: 15px;
-  overflow: hidden;
+const PaginationItem = styled(motion.img)<PaginationItemProps>`
+  width: 40px;
+  height: 40px;
+  border-radius: 100px;
   cursor: pointer;
-  position: relative;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, border 0.3s ease;
-  border: ${({ isActive }) => (isActive ? "2px solid #283E7E" : "none")};
-  transform: ${({ isActive }) => (isActive ? "scale(1.05)" : "scale(1)")};
-`;
-
-const CardImage = styled.img`
-  width: 100%;
-  height: 100%;
   object-fit: cover;
+  border: ${({ active }) => (active ? "2px solid #283e7e" : "none")};
+  transition: transform 0.3s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
-const CardTitle = styled.div`
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  color: white;
-  font-size: 18px;
+const ActionButton = styled.button`
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
   font-weight: bold;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
-`;
-
-const ButtonContainer = styled.div`
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 3;
-`;
-
-const Button = styled.button`
-  margin-left: 100px;
-  padding: 3px;
-  font-size: 15px;
   color: white;
-  background-color: #283E7E;
+  background-color: #283e7e;
   border: none;
   border-radius: 50px;
   cursor: pointer;
@@ -122,184 +110,148 @@ const Button = styled.button`
 
   &:hover {
     background-color: white;
-    color: #283E7E;
+    color: #283e7e;
   }
 `;
 
-const PaginationContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-`;
-
-const Dot = styled.div<{ active: boolean }>`
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: ${({ active }) => (active ? "#283E7E" : "rgba(255, 255, 255, 0.5)")};
-  margin: 0 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-`;
-
-const ActionButton = styled.button`
-  font-family: 'Marhey';
-  padding: 0.5rem 2rem;
+const NavigationButton = styled.button`
+  padding: 10px;
   font-size: 16px;
-  font-weight: 500;
   color: white;
-  background-color: #283E7E;
-  border: 1px solid #283E7E;
-  border-radius: 50px;
+  background-color: #283e7e;
+  border: none;
+  border-radius: 50%;
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
+  transition: background-color 0.3s;
 
   &:hover {
-    color: #283E7E;
-    background-color: white;
-  }
-
-  &:focus {
-    outline: none;
+    background-color: #1e2c5d;
   }
 `;
 
-// Define the TypeScript type for a Card
-type CardType = {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-};
+const cards = [
+  {
+    id: 1,
+    title: "Milk",
+    description: "Fresh and creamy, our dairy milk is sourced from healthy cows and is rich in essential nutrients like calcium, vitamin D, and protein. Perfect for drinking, cooking, or adding to your favorite recipes.",
+    image: image1,
+    backgroundColor: "#fdd78437", // Light yellow
+  },
+  {
+    id: 2,
+    title: "Cream",
+    description: "Luxuriously thick and smooth, our cream adds richness to both sweet and savory dishes. Ideal for whipping, cooking, or drizzling over desserts, it's the perfect indulgence for enhancing your culinary creations.",
+    image: image3,
+    backgroundColor: "#fdd78437", // Light blue
+  },
+  {
+    id: 3,
+    title: "Icecream",
+    description: "Pure and refreshing, our water is sourced from natural springs, ensuring a crisp taste and high quality. Stay hydrated with this essential beverage, perfect for any occasion.",
+    image: image5,
+    backgroundColor: "#fdd78437", // Light pink
+  },
+  {
+    id: 4,
+    title: "Tomato Sauce",
+    description: "Made from ripe, juicy tomatoes, our tomato sauce is packed with flavor and perfect for pasta, pizzas, and various dishes. Enjoy the rich taste of sun-ripened tomatoes combined with herbs and spices.",
+    image: image6,
+    backgroundColor: "#fdd78437", // Light gray
+  },
+  {
+    id: 5,
+    title: "Lacto",
+    description: "A delicious and nutritious probiotic beverage, our lacto drink is made from fermented milk, providing a creamy texture and a tangy flavor. It's great for digestion and can be enjoyed on its own or used in smoothies.",
+    image: image7,
+    backgroundColor: "#fdd78437", // Light gray
+  },
+  {
+    id: 6,
+    title: "Drinks",
+    description: "A delicious and nutritious probiotic beverage, our lacto drink is made from fermented milk, providing a creamy texture and a tangy flavor. It's great for digestion and can be enjoyed on its own or used in smoothies.",
+    image: image9,
+    backgroundColor: "#fdd78437", // Light gray
+  },
+  {
+    id: 7,
+    title: "Peanut Butter",
+    description: "Creamy or crunchy, our peanut butter is made from high-quality peanuts, offering a rich, nutty flavor and a good source of protein and healthy fats. Perfect for spreading, baking, or adding to smoothies.",
+    image: image10,
+    backgroundColor: "##fdd78437", // Light gray
+  },
+  {
+    id: 8,
+    title: "Mayonnaise",
+    description: "Rich and flavorful mayonnaise for your dishes.",
+    image: image11,
+    backgroundColor: "#fdd78437", // Light gray
+  },
+  {
+    id: 9,
+    title: "Teabags",
+    description: "Our teabags are filled with carefully selected tea leaves, offering a delightful brew full of flavor and aroma. Enjoy a calming cup of tea any time of day, whether you prefer herbal, black, green, or flavored varieties.",
+    image: image12,
+    backgroundColor: "#fdd78437", // Light gray
+  }, // Keeping your existing array unchanged
 
-// Define the array of cards with unique descriptions
-const cards: CardType[] = [
-  { id: 1, title: "Milk", description: "Discover the benefits of fresh almond milk, packed with nutrients.", image: image1 },
-  { id: 2, title: "Drinks", description: "Explore a variety of refreshing drinks to complement your meals.", image: image3 },
-  { id: 3, title: "Yogurt", description: "Indulge in our creamy and delicious yogurt, perfect for breakfast.", image: image5 },
-  { id: 4, title: "Mayonnaise", description: "Try our rich and flavorful mayonnaise for your favorite dishes.", image: image6 },
-];
-
-// Additional titles to display based on selected cards
-const titles = [
-  "Milk but better",
-  "Refreshing Drinks Await!",
-  "Creamy Yogurt Delights!",
-  "Rich Mayonnaise for Every Dish!",
 ];
 
 const About = () => {
   const [selectedCardIndex, setSelectedCardIndex] = useState(0);
-  const [buttonVisible, setButtonVisible] = useState<number | null>(null);
 
-  const handleCardClick = (index: number) => {
-    setSelectedCardIndex(index);
-    setButtonVisible(index);
+  const handlePrev = () => {
+    setSelectedCardIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : cards.length - 1));
   };
 
-  const handleDotClick = (index: number) => {
-    setSelectedCardIndex(index);
-    setButtonVisible(index);
+  const handleNext = () => {
+    setSelectedCardIndex((prevIndex) => (prevIndex < cards.length - 1 ? prevIndex + 1 : 0));
   };
 
   return (
     <Container>
-      {/* Header Section */}
       <HeaderSection>
-        <motion.h1
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          style={{ color: '#000000' }}
-        >
-          Welcome to Our Dairy Products!
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          style={{ color: '#000000' }}
-        >
-          Discover the richness and health benefits of our carefully curated dairy products. 
-          From refreshing almond milk to creamy yogurt, we have something for everyone!
-        </motion.p>
+        <Title>About Our Dairy Products</Title>
+        <Description>Discover our range of healthy and delicious dairy products.</Description>
       </HeaderSection>
 
-      {/* Top Section: Image and Text */}
-      <TopSection>
-        <ImageContainer>
+      <ContentSection>
+        <LeftSection backgroundColor={cards[selectedCardIndex].backgroundColor}>
           <AnimatePresence>
-            {selectedCardIndex >= 0 && (
-              <motion.img
-                key={cards[selectedCardIndex]?.id}
-                src={cards[selectedCardIndex].image}
-                alt={cards[selectedCardIndex].title}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.5 }}
-              />
-            )}
+            <ImageDisplay
+              key={cards[selectedCardIndex]?.id}
+              src={cards[selectedCardIndex]?.image}
+              alt={cards[selectedCardIndex]?.title}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+            />
           </AnimatePresence>
-        </ImageContainer>
+          <PaginationContainer>
+            <NavigationButton onClick={handlePrev}>←</NavigationButton>
+            {cards.map((card, index) => (
+              <PaginationItem
+                key={card.id}
+                src={card.image}
+                alt={card.title}
+                active={index === selectedCardIndex}
+                onClick={() => setSelectedCardIndex(index)}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              />
+            ))}
+            <NavigationButton onClick={handleNext}>→</NavigationButton>
+          </PaginationContainer>
+        </LeftSection>
 
-        <LeftSection>
-          <motion.h1
-            key={cards[selectedCardIndex]?.id}
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            {titles[selectedCardIndex]}
-          </motion.h1>
-
-          <motion.p
-            key={cards[selectedCardIndex]?.id + "-desc"}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            {cards[selectedCardIndex]?.description}
-          </motion.p>
+        <RightSection>
+          <Title>{cards[selectedCardIndex]?.title}</Title>
+          <Description>{cards[selectedCardIndex]?.description}</Description>
           <ActionButton onClick={() => alert(`More about ${cards[selectedCardIndex]?.title}`)}>
             View Products
           </ActionButton>
-        </LeftSection>
-      </TopSection>
-
-      {/* Bottom Section: Card Slider */}
-      <CardContainer>
-        {cards.map((card, index) => (
-          <Card
-            key={card.id}
-            onClick={() => handleCardClick(index)}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            isActive={index === selectedCardIndex}
-          >
-            <CardImage src={card.image} alt={card.title} />
-            <CardTitle>{card.title}</CardTitle>
-            {buttonVisible === index && (
-              <ButtonContainer>
-                <Button onClick={() => alert(`Viewing products for ${card.title}`)}>
-                  <FaEye />
-                </Button>
-              </ButtonContainer>
-            )}
-          </Card>
-        ))}
-      </CardContainer>
-
-      {/* Pagination Dots */}
-      <PaginationContainer>
-        {cards.map((_, index) => (
-          <Dot
-            key={index}
-            active={index === selectedCardIndex}
-            onClick={() => handleDotClick(index)}
-          />
-        ))}
-      </PaginationContainer>
+        </RightSection>
+      </ContentSection>
     </Container>
   );
 };

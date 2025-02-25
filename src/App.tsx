@@ -3,6 +3,9 @@ import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Discover from "./components/Discover";
 import About from "./components/About";
+import Blogs from "./components/Blogs";
+import Testimonial from "./components/Testimonial";
+
 
 
 const App: React.FC = () => {
@@ -12,6 +15,9 @@ const App: React.FC = () => {
       <Hero />
       <Discover />
       <About />
+      <Blogs />
+      <Testimonial />
+      
     </>
   );
 };

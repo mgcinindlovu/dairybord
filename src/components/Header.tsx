@@ -8,7 +8,7 @@ const HeaderContainer = styled.header`
   justify-content: space-evenly;
   gap: 180px;
   align-items: center;
-  background: #ffffffa6;
+  background: #ffffffd8;
   color: #000;
   position: fixed;
   top: 0;
@@ -100,7 +100,7 @@ const Header: React.FC = () => {
         <a href="#careers">Testimonials</a>
         <a href="#contact">Contact Us</a>
         <LoginButton>Our brands</LoginButton>
-        <SignUpButton>Expore</SignUpButton>
+        <SignUpButton>Explore</SignUpButton>
       
       </NavLinks>
       

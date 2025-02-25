@@ -44,7 +44,8 @@ const LeftSection = styled.div`
   font-family: 'Marhey';
 
   h1 {
-    font-size: 46px;
+    font-size: 64px;
+    font-weight: 400;
     color: #fff;
     margin-bottom: 10px;
   }
@@ -230,7 +231,7 @@ const cards: CardType[] = [
 
 // Additional titles to display based on selected cards
 const titles = [
-  "Milk but better",
+  "Milk, but better!",
   "Refreshing Drinks Await!",
   "Creamy Yogurt Delights!",
   "Rich Mayonnaise for Every Dish!",
