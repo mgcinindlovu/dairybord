@@ -44,8 +44,8 @@ const LeftSection = styled.div`
   font-family: 'Marhey';
 
   h1 {
-    font-size: 64px;
-    font-weight: 400;
+    font-size: 50px;
+    font-weight: 200;
     color: #fff;
     margin-bottom: 10px;
   }
@@ -205,6 +205,8 @@ const ActionButton = styled.button`
     background-color: white; 
   }
 
+  
+
   &:focus {
     outline: none;
   }
@@ -297,7 +299,7 @@ const Slider = () => {
           {cards[selectedCardIndex]?.description}
         </motion.p>
          {/* Add the button below the text */}
-         <ActionButton onClick={() => alert(`More about ${cards[selectedCardIndex]?.title}`)}>
+         <ActionButton  onClick={() => alert(`More about ${cards[selectedCardIndex]?.title}`)}>
           View Products
         </ActionButton>
       </LeftSection>

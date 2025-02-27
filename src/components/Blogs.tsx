@@ -12,22 +12,22 @@ import image1 from "../assets/Rectangle 4.jpg";
 const blogPosts = [
   {
     id: 1,
-    title: 'Blog Post 1',
-    description: 'Description for blog post 1',
+    title: 'Dairy Kitchen Delights',
+    description: '5 recipes you have to try based on our dairy products!',
     image: image1 , // Replace with your image path
     link: '/blog/1', // Replace with your blog post link
   },
   {
     id: 2,
-    title: 'Blog Post 2',
-    description: 'Description for blog post 2',
+    title: 'From cow to kitchen',
+    description: '5 surprising uses for fresh milk for those who love milk!',
     image: image2, // Replace with your image path
     link: '/blog/2', // Replace with your blog post link
   },
   {
     id: 3,
-    title: 'Blog Post 3',
-    description: 'Description for blog post 3',
+    title: 'Growing Strong',
+    description: 'How a glass  of milks helps your child thrive!',
     image: image3, // Replace with your image path
     link: '/blog/3', // Replace with your blog post link
   },
@@ -42,9 +42,16 @@ const blogPosts = [
 ];
 
 const Container = styled.div`
-margin-top: 5%;
-  padding: 20px;
-  text-align: center;
+margin-top: 10%;
+  padding: 30px;
+  text-align: left;
+  font-family:"Marhey";
+
+  h1{
+    font-size: 48px;
+    font-weight: 400;
+    margin-left: 1%;
+  }
 `;
 
 const BlogCard = styled.div`
@@ -53,6 +60,7 @@ const BlogCard = styled.div`
   padding: 20px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s;
+ 
 
   &:hover {
     transform: translateY(-5px);
@@ -79,27 +87,26 @@ const Description = styled.p`
 
 const LinkButton = styled.a`
   display: inline-block;
-  padding: 10px 20px;
   margin-top: 10px;
   font-size: 16px;
   font-weight: bold;
-
+  margin-right:20px;
   border-radius: 50px;
   text-decoration: underline;
   transition: background-color 0.3s;
 
   &:hover {
-    background-color: #1e2c5d;
+    color: #1e2c5d;
   }
 `;
 
 const Blogs = () => {
   return (
     <Container>
-      <h1>Blogs</h1>
+      <h1>Our Latest <br/>News</h1>
       <Swiper
         spaceBetween={30}
-        slidesPerView={4}
+        slidesPerView={3.5}
         loop={true}
         pagination={{ clickable: true }}
         navigation

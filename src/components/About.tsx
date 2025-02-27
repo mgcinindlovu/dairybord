@@ -16,6 +16,7 @@ const Container = styled.div`
   flex-direction: column;
   height: 100vh;
   padding: 50px;
+  
   color: black;
   gap: 60px;
   font-family: 'Marhey';
@@ -30,6 +31,7 @@ const HeaderSection = styled.div`
 
 const ContentSection = styled.div`
   display: flex;
+  gap: 60px;
   flex-direction: row;
   flex: 1;
 `;
@@ -61,13 +63,14 @@ const ImageDisplay = styled(motion.img)`
 `;
 
 const Title = styled(motion.h1)`
-  font-size: 36px;
-  color: #283e7e;
+  font-size: 48px;
+  font-weight: 400;
+  color: #000000;
 `;
 
 const Description = styled(motion.p)`
   font-size: 18px;
-  color: #555;
+  color: #000000;
 `;
 
 const PaginationContainer = styled.div`
@@ -98,6 +101,7 @@ const PaginationItem = styled(motion.img)<PaginationItemProps>`
 
 const ActionButton = styled.button`
   margin-top: 20px;
+  font-family: 'Marhey';
   padding: 10px 20px;
   font-size: 16px;
   font-weight: bold;
@@ -227,7 +231,18 @@ const About = () => {
               transition={{ duration: 0.5 }}
             />
           </AnimatePresence>
-          <PaginationContainer>
+       
+        </LeftSection>
+
+        <RightSection>
+          <Title>{cards[selectedCardIndex]?.title}</Title>
+          <Description>{cards[selectedCardIndex]?.description}</Description>
+          <ActionButton  onClick={() => alert(`More about ${cards[selectedCardIndex]?.title}`)}>
+            View Products
+          </ActionButton>
+        </RightSection>
+      </ContentSection>
+         <PaginationContainer>
             <NavigationButton onClick={handlePrev}>←</NavigationButton>
             {cards.map((card, index) => (
               <PaginationItem
@@ -242,16 +257,6 @@ const About = () => {
             ))}
             <NavigationButton onClick={handleNext}>→</NavigationButton>
           </PaginationContainer>
-        </LeftSection>
-
-        <RightSection>
-          <Title>{cards[selectedCardIndex]?.title}</Title>
-          <Description>{cards[selectedCardIndex]?.description}</Description>
-          <ActionButton onClick={() => alert(`More about ${cards[selectedCardIndex]?.title}`)}>
-            View Products
-          </ActionButton>
-        </RightSection>
-      </ContentSection>
     </Container>
   );
 };
