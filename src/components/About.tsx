@@ -34,6 +34,12 @@ const ContentSection = styled.div`
   gap: 60px;
   flex-direction: row;
   flex: 1;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
 `;
 
 const LeftSection = styled.div<{ backgroundColor: string }>`
@@ -44,6 +50,10 @@ const LeftSection = styled.div<{ backgroundColor: string }>`
   background-color: ${({ backgroundColor }) => backgroundColor};
   border-radius: 15px;
   padding: 20px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const RightSection = styled.div`
@@ -53,6 +63,11 @@ const RightSection = styled.div`
   justify-content: center;
   align-items: flex-start;
   text-align: left;
+
+  @media (max-width: 768px) {
+    align-items: center;
+    text-align: center;
+  }
 `;
 
 const ImageDisplay = styled(motion.img)`
@@ -60,17 +75,29 @@ const ImageDisplay = styled(motion.img)`
   max-width: 400px;
   height: auto;
   border-radius: 15px;
+
+  @media (max-width: 768px) {
+    max-width: 250px;
+  }
 `;
 
 const Title = styled(motion.h1)`
   font-size: 48px;
   font-weight: 400;
   color: #000000;
+
+  @media (max-width: 768px) {
+    font-size: 32px;
+  }
 `;
 
 const Description = styled(motion.p)`
   font-size: 18px;
   color: #000000;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 const PaginationContainer = styled.div`
@@ -79,6 +106,10 @@ const PaginationContainer = styled.div`
   align-items: center;
   gap: 10px;
   margin-top: 10px;
+
+  @media (max-width: 768px) {
+    gap: 5px;
+  }
 `;
 
 interface PaginationItemProps {
@@ -96,6 +127,10 @@ const PaginationItem = styled(motion.img)<PaginationItemProps>`
 
   &:hover {
     transform: scale(1.1);
+  }
+  @media (max-width: 768px) {
+    width: 30px;
+    height: 30px;
   }
 `;
 
@@ -116,6 +151,11 @@ const ActionButton = styled.button`
     background-color: white;
     color: #283e7e;
   }
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
 `;
 
 const NavigationButton = styled.button`
@@ -130,6 +170,10 @@ const NavigationButton = styled.button`
 
   &:hover {
     background-color: #1e2c5d;
+  }
+  @media (max-width: 768px) {
+    padding: 8px;
+    font-size: 14px;
   }
 `;
 

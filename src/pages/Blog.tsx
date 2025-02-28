@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Header from "../components/Header";
-import { FaPaperPlane  } from "react-icons/fa";
+import { FaPaperPlane } from "react-icons/fa";
 import Footer from "../components/Footer";
 import image3 from "../assets/Rectangle 4-1.jpg";
 import image1 from "../assets/Rectangle 4.jpg";
@@ -13,13 +13,18 @@ import image8 from "../assets/Rectangle 4.jpg";
 
 const BlogContainer = styled.div`
   display: grid;
-  font-family: 'Marhey';
+  font-family: 'Marhey', sans-serif;
 `;
 
 const Section = styled.section`
   display: flex;
   padding: 40px 50px;
   background-color: #f8f8f8;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 20px;
+  }
 `;
 
 const LeftDiv = styled.div`
@@ -30,13 +35,24 @@ const LeftDiv = styled.div`
     font-size: 27px;
     font-weight: 700;
     margin-top: 130px;
-    color: #000000;
+    color: #000;
+    
+    @media (max-width: 768px) {
+      font-size: 22px;
+      margin-top: 20px;
+    }
   }
+
   p {
     font-size: 16px;
     line-height: 27.84px;
     font-weight: 400;
-    color: #000000;
+    color: #000;
+
+    @media (max-width: 768px) {
+      font-size: 14px;
+      line-height: 22px;
+    }
   }
 `;
 
@@ -63,7 +79,13 @@ const CardsContainer = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
-  padding: 20px 0;
+  padding: 20px 50px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
 `;
 
 const CardContainer = styled.div`
@@ -89,7 +111,7 @@ const CardImage = styled.img`
 
 const CardTitle = styled.h4`
   font-size: 19px;
-  font-weight:400;
+  font-weight: 400;
   margin: 10px 0;
 `;
 
@@ -98,6 +120,7 @@ const CardDescription = styled.p`
   font-weight: 400;
   color: #666;
 `;
+
 const NewsletterSection = styled.div`
   background-color: #283e7e;
   color: #fff;
@@ -105,33 +128,53 @@ const NewsletterSection = styled.div`
   padding: 100px 20px;
   margin-top: 40px;
 
+  @media (max-width: 768px) {
+    padding: 50px 20px;
+  }
 `;
 
 const NewsletterTitle = styled.h3`
   font-size: 24px;
   font-weight: 700;
   margin-bottom: 30px;
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
 `;
 
 const NewsletterDescription = styled.p`
   font-size: 16px;
   font-weight: 400;
   margin-bottom: 40px;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 const FormContainer = styled.div`
   display: flex;
-  justify-content:center;
+  justify-content: center;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const InputContainer = styled.div`
   position: relative;
   width: 300px;
+
+  @media (max-width: 768px) {
+    width: 90%;
+  }
 `;
 
 const EmailInput = styled.input`
   width: 100%;
- padding: 10px 0 10px 10px ;
+  padding: 10px 0 10px 10px;
   font-size: 16px;
   border-radius: 30px;
   border: none;
@@ -148,16 +191,23 @@ const SubscribeButton = styled.button`
   padding: 10px 20px;
   font-size: 14px;
   font-weight: 700;
-  color: #ffffff;
+  color: #fff;
   border-radius: 30px;
   cursor: pointer;
   transition: 0.3s;
 
   &:hover {
-    background-color: #283e7e;
+    background-color: #1f2c5a;
+  }
+
+  @media (max-width: 768px) {
+    margin-left: 0;
+    width: 100%;
+    position: relative;
+    transform: none;
+    margin-top: 10px;
   }
 `;
-
 
 const Blog: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState(image3);
@@ -202,7 +252,8 @@ const Blog: React.FC = () => {
           <CardTitle>Dairy brings a family together</CardTitle>
           <CardDescription>A heartwarming story of togetherness!</CardDescription>
         </CardContainer>
-        <CardContainer onClick={() => handleCardClick(image5, "Quick Brew Coffee", "The perfect blend for a smooth and refreshing start.")}>
+      
+      <CardContainer onClick={() => handleCardClick(image5, "Quick Brew Coffee", "The perfect blend for a smooth and refreshing start.")}>
           <CardImage src={image5} alt="Card 3" />
           <CardTitle>From cow to kitchen</CardTitle>
           <CardDescription>5 surprising uses for fresh milk for those who love milk!</CardDescription>
@@ -224,20 +275,18 @@ const Blog: React.FC = () => {
         </CardContainer>
       </CardsContainer>
 
-     
       {/* Newsletter Section */}
       <NewsletterSection>
         <NewsletterTitle>Subscribe to Our Newsletter</NewsletterTitle>
-        <NewsletterDescription>
-          Get the latest dairy recipes, health tips, and special offers straight to your inbox!
-        </NewsletterDescription>
+        <NewsletterDescription>Get the latest dairy recipes, health tips, and special offers straight to your inbox!</NewsletterDescription>
         <FormContainer>
           <InputContainer>
             <EmailInput type="email" placeholder="Enter your email" />
-            <SubscribeButton> <FaPaperPlane  /></SubscribeButton>
+            <SubscribeButton><FaPaperPlane /></SubscribeButton>
           </InputContainer>
         </FormContainer>
       </NewsletterSection>
+
       <Footer />
     </BlogContainer>
   );

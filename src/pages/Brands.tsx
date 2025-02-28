@@ -20,25 +20,27 @@ import image90 from "../assets/steri1.png";
 
 const BrandsContainer = styled.div`
   display: grid;
-
-  div{
-    text-align: center;
-    font-family: 'Marhey';
-  }
+  text-align: center;
+  font-family: 'Marhey';
 `;
 
 const Title = styled.h1`
   font-size: 2.5rem;
   font-weight: 100;
-  padding: 20% 0 0 5%;
+  padding: 20% 5% 0;
   color: #ffffff;
-  height: 50vh; // Keep this to control overall height
-  flex-direction: column;
-  align-items: center; // Adjust padding as needed
-  background: url(${image3}) center center;
-  background-size: 100%; // Reduced size of the background image
-  background-repeat: no-repeat; // Prevents tiling
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: url(${image3}) center center / cover no-repeat;
   font-family: "Marhey";
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+    padding: 15% 5% 0;
+  }
 `;
 
 const CardsContainer = styled.div`
@@ -54,96 +56,19 @@ const CardsContainer = styled.div`
 
   @media (max-width: 600px) {
     grid-template-columns: 1fr;
+    padding: 30px;
   }
 `;
 
 const CardContainer = styled.div`
-  background: #6565d6; // Change to blue when active
+  background: #6565d6;
   border-radius: 10px;
   padding: 20px;
-  transition: transform 0.3s, background-color 0.3s; // Add transition for background
+  transition: transform 0.3s;
   cursor: pointer;
-
   &:hover {
-
     transform: scale(1.05);
   }
-
-`;
-const CardContainer1 = styled.div`
-  background: #7c2d08; // Change to blue when active
-  border-radius: 10px;
-  padding: 20px;
-  transition: transform 0.3s, background-color 0.3s; // Add transition for background
-  cursor: pointer;
-
-  &:hover {
-   
-    transform: scale(1.05);
-  }
-
-
- 
-`;
-const CardContainer2 = styled.div`
-  background: #bd6666; // Change to blue when active
-  border-radius: 10px;
-  padding: 20px;
-  transition: transform 0.3s, background-color 0.3s; // Add transition for background
-  cursor: pointer;
-
-  &:hover {
-   
-    transform: scale(1.05);
-  }
-
-
- 
-`;
-const CardContainer3 = styled.div`
-  background: #ffd900; // Change to blue when active
-  border-radius: 10px;
-  padding: 20px;
-  transition: transform 0.3s, background-color 0.3s; // Add transition for background
-  cursor: pointer;
-
-  &:hover {
-    // Darker blue on hover
-    transform: scale(1.05);
-  }
-
-
- 
-`;
-const CardContainer4 = styled.div`
-  background: #fc9948; // Change to blue when active
-  border-radius: 10px;
-  padding: 20px;
-  transition: transform 0.3s, background-color 0.3s; // Add transition for background
-  cursor: pointer;
-
-  &:hover {
-   
-    transform: scale(1.05);
-  }
-
-
- 
-`;
-const CardContainer5 = styled.div`
-  background: #ff9900; // Change to blue when active
-  border-radius: 10px;
-  padding: 20px;
-  transition: transform 0.3s, background-color 0.3s; // Add transition for background
-  cursor: pointer;
-
-  &:hover {
-   
-    transform: scale(1.05);
-  }
-
-
- 
 `;
 
 const CardImage = styled.img`
@@ -153,11 +78,10 @@ const CardImage = styled.img`
 `;
 
 const DivContainer = styled.div`
-
-  margin-bottom: 40px; // Space between the two divs
-
-  div{
+  margin-bottom: 40px;
+  div {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     gap: 30px;
   }
@@ -167,9 +91,13 @@ const SubTitle = styled.h3`
   font-size: 48px;
   font-weight: 400;
   margin-bottom: 20px;
+  font-family: 'Marhey';
 
-  font-family:'Marhey';
+  @media (max-width: 600px) {
+    font-size: 36px;
+  }
 `;
+
 const CardContainerDivOne = styled.div`
   width: 150px;
   cursor: pointer;
@@ -177,74 +105,31 @@ const CardContainerDivOne = styled.div`
 
 const Brands: React.FC = () => {
   return (
-    < BrandsContainer id="brands">
+    <BrandsContainer id="brands">
       <Header />
       <Title>Our brands</Title>
-     <div><h1>Our Best Sellers</h1>
-     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, odio laborum officiis accusamus ut laboriosam aperiam similique reiciendis modi quia consequuntur.</p></div> 
+      <div>
+        <h1>Our Best Sellers</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+      </div>
       <CardsContainer>
-      
-        <CardContainer >
-          <CardImage src={image7} alt="Card 1" />
-        
-        </CardContainer>
-        <CardContainer1>
-          <CardImage src={image1} alt="Card 2" />
-         
-        </CardContainer1>
-        <CardContainer2 >
-          <CardImage src={image2} alt="Card 3" />
-        
-        </CardContainer2>
-
-        <CardContainer3>
-          <CardImage src={image5} alt="Card 4" />
-         
-        </CardContainer3>
-        <CardContainer4 >
-          <CardImage src={image6} alt="Card 5" />
-          
-        </CardContainer4>
-        <CardContainer5 >
-          <CardImage src={image4} alt="Card 6" />
-         
-        </CardContainer5>
+        {[image7, image1, image2, image5, image6, image4].map((img, index) => (
+          <CardContainer key={index}>
+            <CardImage src={img} alt={`Card ${index + 1}`} />
+          </CardContainer>
+        ))}
       </CardsContainer>
 
       <DivContainer>
-          <SubTitle>Our Products</SubTitle>
-         <div>
-         <CardContainerDivOne>
-              <CardImage src={image10} alt="Card 1" />
-            
+        <SubTitle>Our Products</SubTitle>
+        <div>
+          {[image10, image20, image50, image60, image70, image80, image90].map((img, index) => (
+            <CardContainerDivOne key={index}>
+              <CardImage src={img} alt={`Card ${index + 1}`} />
             </CardContainerDivOne>
-            <CardContainerDivOne>
-              <CardImage src={image20} alt="Card 2" />
-            
-            </CardContainerDivOne>
-            <CardContainerDivOne>
-              <CardImage src={image50} alt="Card 3" />
-              
-            </CardContainerDivOne>
-            <CardContainerDivOne>
-              <CardImage src={image60} alt="Card 4" />
-             
-            </CardContainerDivOne>
-            <CardContainerDivOne>
-              <CardImage src={image70} alt="Card 5" />
-             
-            </CardContainerDivOne>
-            <CardContainerDivOne>
-              <CardImage src={image80} alt="Card 6" />
-             
-            </CardContainerDivOne>
-            <CardContainerDivOne>
-              <CardImage src={image90} alt="Card 7" />
-             
-            </CardContainerDivOne>
-         </div>
-            
-        </DivContainer>
+          ))}
+        </div>
+      </DivContainer>
       <Contact />
       <Footer />
     </BrandsContainer>

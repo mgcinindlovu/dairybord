@@ -18,13 +18,15 @@ import image12 from "../assets/Rectangle 69.jpg";
 import image13 from "../assets/Rectangle 70.jpg";
 
 const AboutContainer = styled.div`
+
   display: grid;
 `;
 
 const Title = styled.h1`
+  margin-top:10%;
   font-size: 2.5rem;
   font-weight: 100;
-  padding: 20% 0 0 5%;
+  padding: 10% 0 0 5%;
   color: #ffffff;
   height: 50vh; // Keep this to control overall height
   flex-direction: column;

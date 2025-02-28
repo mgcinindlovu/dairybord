@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import styled from "styled-components";
-import { motion, AnimatePresence } from "framer-motion";
-import { FaArrowLeft, FaArrowRight , FaEye } from "react-icons/fa";
+import styled, { keyframes } from "styled-components";
+import { motion } from "framer-motion";
+import { FaArrowLeft, FaArrowRight, FaEye } from "react-icons/fa";
+import { Link } from "react-router-dom"; // Import Link
 import image1 from "../assets/vegan-food-nutrition-concept-cheerful-dark-skinned-woman-with-curly-hair-holds-bottle-fresh-almond-milk.jpg";
 import image3 from "../assets/young-woman-with-cocktail-yellow-background.jpg";
 import image5 from "../assets/photo-pleased-afro-american-woman-stands-with-closed-eyes-holds-two-ice-creams.jpg";
@@ -17,13 +18,19 @@ const Container = styled.div`
   position: relative;
   overflow: hidden;
 
+  @media (max-width: 1024px) {
+    padding: 30px;
+  }
+
   @media (max-width: 768px) {
+    justify-content: flex-start;
     flex-direction: column;
-    text-align: center;
+    height: auto; /* Allow height to be auto for smaller screens */
+    text-align: left;
+    align-items:left;
   }
 `;
 
-/* FULLSCREEN BACKGROUND IMAGE WITH POP-OUT ANIMATION */
 const Background = styled(motion.div)`
   position: absolute;
   top: 0;
@@ -43,17 +50,29 @@ const LeftSection = styled.div`
   max-width: 400px;
   font-family: 'Marhey';
 
+  @media (max-width: 768px) {
+    margin:120px 0 0 0;
+  }
+  
   h1 {
     font-size: 50px;
     font-weight: 200;
     color: #fff;
     margin-bottom: 10px;
+
+    @media (max-width: 768px) {
+      font-size: 36px; /* Smaller font size for mobile */
+    }
   }
 
   p {
     font-size: 18px;
     color: #ddd;
     margin-bottom: 20px;
+
+    @media (max-width: 768px) {
+      font-size: 16px; /* Smaller font size for mobile */
+    }
   }
 
   @media (max-width: 768px) {
@@ -72,17 +91,22 @@ const RightSection = styled.div`
 `;
 
 const CardContainer = styled.div`
-  margin: 37% 0 0 25%;
+  margin: 33% 0 0 25%; /* Adjust the margin as necessary */
   display: flex;
   gap: 20px;
   z-index: 2;
-  font-family: 'Marhey' ;
- 
+  font-family: 'Marhey';
+
+  @media (max-width: 768px) {
+    display: flex;
+    padding: 5% 30% 0 5%; /* Adjust margin for mobile */
+    align-items: center; /* Center align cards */
+  }
 `;
 
 const Card = styled(motion.div)<{ isActive: boolean }>`
- font-size: 5px;
- font-weight: 100;
+  font-size: 5px;
+  font-weight: 100;
   width: 150px;
   height: 150px;
   border-radius: 15px;
@@ -93,6 +117,11 @@ const Card = styled(motion.div)<{ isActive: boolean }>`
   transition: transform 0.3s ease, border 0.3s ease;
   border: ${({ isActive }) => (isActive ? "2px solid #283E7E" : "none")}; // Border for active card
   transform: ${({ isActive }) => (isActive ? "scale(1.05)" : "scale(1)")} ; // Slightly scale active card
+
+  @media (max-width: 768px) {
+    width: 70px; /* Smaller card size for mobile */
+    height: 70px; /* Smaller card size for mobile */
+  }
 `;
 
 const CardImage = styled.img`
@@ -109,19 +138,36 @@ const CardTitle = styled.div`
   font-size: 18px;
   font-weight: bold;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+
+  @media (max-width: 768px) {
+    font-size: 10px;
+  }
 `;
 
-// Button Container inside Card
 const ButtonContainer = styled.div`
   position: absolute;
   bottom: 10px; /* Adjust position as needed */
-  left: 50%;
+  left: 85%;
   transform: translateX(-50%);
   z-index: 3;
 `;
 
+const pulse = keyframes`
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+`;
+
 const Button = styled.button`
-  margin-left: 100px;
   padding: 3px;
   font-size: 15px;
   color: white;
@@ -135,14 +181,21 @@ const Button = styled.button`
     background-color: white; 
     color: #283E7E;
   }
+
+  & svg {
+    animation: ${pulse} 1.5s infinite; /* Add the pulse animation */
+  }
 `;
 
-// Pagination Styles
 const PaginationContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 20px;
   margin-left: 200px;
+
+  @media (max-width: 768px) {
+    margin-left: 0; /* Center pagination on mobile */
+  }
 `;
 
 const Dot = styled.div<{ active: boolean }>`
@@ -164,18 +217,22 @@ const ArrowContainer = styled.div`
   display: flex;
   transform: translateY(-50%);
   z-index: 2; /* Ensure arrows are above other content */
+
+  @media (max-width: 768px) {
+    left: 35%;
+  }
 `;
 
 const Arrow = styled.button<{ isLeft?: boolean; isActive?: boolean }>`
   background: ${({ isLeft, isActive }) =>
-    isActive ? (isLeft ? "#ffffff" :  "#283E7E") : isLeft ? "##ffffff" : "##283E7E"};
+    isActive ? (isLeft ? "#ffffff" :  "#283E7E") : isLeft ? "#ffffff" : "#283E7E"};
   border: none;
   cursor: pointer;
   font-size: 20px;
   font-weight: 100;
   border-radius: 100%;
   color: ${({ isLeft, isActive }) =>
-    isActive ? "#283E7E" : isLeft ? "#283E7E" : "#283E7E"};
+    isActive ? "#ffffff" : isLeft ? "#283E7E" : "#ffffff"};
   padding: 10px;
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, transform 0.2s;
 
@@ -187,10 +244,15 @@ const Arrow = styled.button<{ isLeft?: boolean; isActive?: boolean }>`
   &:active {
     transform: scale(0.9); /* Adds a slight press effect */
   }
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
 `;
+
 const ActionButton = styled.button`
   font-family: 'Marhey';
-   padding:0.5rem 2rem;
+  padding: 0.5rem 2rem;
   font-size: 16px;
   font-weight: 500;
   color: white;
@@ -205,17 +267,11 @@ const ActionButton = styled.button`
     background-color: white; 
   }
 
-  
-
   &:focus {
     outline: none;
   }
 `;
 
-
-
-
-// Define the TypeScript type for a Card
 type CardType = {
   id: number;
   title: string;
@@ -223,7 +279,6 @@ type CardType = {
   image: string;
 };
 
-// Define the array of cards with unique descriptions
 const cards: CardType[] = [
   { id: 1, title: "Milk", description: "Discover the benefits of fresh almond milk, packed with nutrients.", image: image1 },
   { id: 2, title: "Drinks", description: "Explore a variety of refreshing drinks to complement your meals.", image: image3 },
@@ -231,7 +286,6 @@ const cards: CardType[] = [
   { id: 4, title: "Mayonnaise", description: "Try our rich and flavorful mayonnaise for your favorite dishes.", image: image6 },
 ];
 
-// Additional titles to display based on selected cards
 const titles = [
   "Milk, but better!",
   "Refreshing Drinks Await!",
@@ -245,113 +299,70 @@ const Slider = () => {
 
   const handleCardClick = (index: number) => {
     setSelectedCardIndex(index);
-    setButtonVisible(index); // Show button for the clicked card
-  };
-
-  const handleDotClick = (index: number) => {
-    setSelectedCardIndex(index); // Update card selection on dot click
-    setButtonVisible(index); // Show button for the selected card
+    setButtonVisible(index); // Show the button when a card is clicked
   };
 
   const handleNext = () => {
     setSelectedCardIndex((prevIndex) => (prevIndex + 1) % cards.length);
-    setButtonVisible(selectedCardIndex); // Keep the same button visible on next
   };
 
-  const handlePrevious = () => {
+  const handlePrev = () => {
     setSelectedCardIndex((prevIndex) => (prevIndex - 1 + cards.length) % cards.length);
-    setButtonVisible(selectedCardIndex); // Keep the same button visible on previous
   };
 
   return (
     <Container>
-      {/* Background Image when a card is selected */}
-      <AnimatePresence>
-        {selectedCardIndex >= 0 && (
-          <Background
-            key="background"
-            initial={{ scale: 0, opacity: 0 }} // Start hidden
-            animate={{ scale: 1, opacity: 1 }} // Scale up and fade in
-            exit={{ scale: 0, opacity: 0 }} // Scale down and fade out
-            transition={{ duration: 0.5, ease: "easeInOut" }}
-            style={{ backgroundImage: `url(${cards[selectedCardIndex].image})` }}
-          />
-        )}
-      </AnimatePresence>
-
-      {/* Left Content Section (Text Updates Dynamically) */}
+      <Background
+        style={{ backgroundImage: `url(${cards[selectedCardIndex].image})` }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      />
       <LeftSection>
-        <motion.h1
-          key={cards[selectedCardIndex]?.id}
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          {titles[selectedCardIndex]} {/* Display the current title */}
-        </motion.h1>
-
-        <motion.p
-          key={cards[selectedCardIndex]?.id + "-desc"}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          {cards[selectedCardIndex]?.description}
-        </motion.p>
-         {/* Add the button below the text */}
-         <ActionButton  onClick={() => alert(`More about ${cards[selectedCardIndex]?.title}`)}>
-          View Products
-        </ActionButton>
+        <h1>{titles[selectedCardIndex]}</h1>
+        <p>{cards[selectedCardIndex].description}</p>
+        <ActionButton >Learn More</ActionButton>
       </LeftSection>
-
-      {/* Right: Card Slider */}
       <RightSection>
         <CardContainer>
           {cards.map((card, index) => (
             <Card
               key={card.id}
-              onClick={() => handleCardClick(index)} // Update card selection on click
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              isActive={index === selectedCardIndex} // Pass active state
+              isActive={index === selectedCardIndex}
+              onClick={() => handleCardClick(index)}
             >
               <CardImage src={card.image} alt={card.title} />
               <CardTitle>{card.title}</CardTitle>
-              {/* Conditionally render the button inside the card */}
               {buttonVisible === index && (
                 <ButtonContainer>
-                  <Button onClick={() => alert(`Viewing products for ${card.title}`)}><FaEye /></Button>
+                  <Link to="/brands">
+                    <Button><FaEye /></Button>
+                  </Link>
                 </ButtonContainer>
               )}
             </Card>
           ))}
         </CardContainer>
-
-        {/* Pagination Dots */}
+        <ArrowContainer>
+          <Arrow onClick={handlePrev} isLeft isActive={selectedCardIndex === 0}>
+            <FaArrowLeft />
+          </Arrow>
+          <Arrow onClick={handleNext} isActive={selectedCardIndex === cards.length - 1}>
+            <FaArrowRight />
+          </Arrow>
+        </ArrowContainer>
         <PaginationContainer>
           {cards.map((_, index) => (
             <Dot
               key={index}
               active={index === selectedCardIndex}
-              onClick={() => handleDotClick(index)} // Update card selection on dot click
+              onClick={() => setSelectedCardIndex(index)}
             />
           ))}
         </PaginationContainer>
-
-        {/* Navigation Arrows */}
-        <ArrowContainer>
-  <Arrow isLeft isActive={selectedCardIndex === 0} onClick={handlePrevious}>
-    <FaArrowLeft />
-  </Arrow>
-  <Arrow isActive={selectedCardIndex === cards.length - 1} onClick={handleNext}>
-    <FaArrowRight />
-  </Arrow>
-</ArrowContainer>
-
       </RightSection>
     </Container>
   );
 };
 
 export default Slider;
-

@@ -4,34 +4,56 @@ import Image from "../assets/image.jpg";
 
 const DiscoverSection = styled.section`
   height: 100vh;
-  background: url(${Image}) ;
+  background: url(${Image});
   background-size: cover;
   background-position: center;
   display: flex;
-  align-items: left;
+  align-items: flex-start;
   justify-content: flex-start;
   text-align: left;
   color: white;
   font-family: "Marhey", sans-serif;
-   padding: 50px 0 0 100px;
- margin-top: 5%;
+  padding: 50px 0 0 100px;
+  margin-top: 5%;
+
+  @media (max-width: 768px) {
+    padding: 30px 20px;
+    height: auto; /* Allow height to adjust */
+    margin-top: 40px; /* Remove margin on smaller screens */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
 `;
 
 const Content = styled.div`
   position: relative;
   z-index: 2;
   max-width: 600px;
+
+  @media (max-width: 768px) {
+    max-width: 90%; /* Increase max-width on smaller screens */
+  }
 `;
 
 const Title = styled.h1`
-  font-size:64px;
+  font-size: 64px;
   font-weight: 400;
   margin-bottom: 1rem;
+
+  @media (max-width: 768px) {
+    font-size: 36px; /* Adjust font size on smaller screens */
+  }
 `;
 
 const Text = styled.p`
   font-size: 1.2rem;
   margin-bottom: 2rem;
+
+  @media (max-width: 768px) {
+    font-size: 1rem; /* Adjust font size on smaller screens */
+    margin-bottom: 1rem; /* Adjust margin on smaller screens */
+  }
 `;
 
 const DiscoverButton = styled.button`
@@ -51,6 +73,11 @@ const DiscoverButton = styled.button`
     color: #283e7e;
     border: 1px solid #283e7e;
   }
+
+  @media (max-width: 768px) {
+    padding: 0.6rem 1.5rem; /* Adjust button padding on smaller screens */
+    font-size: 0.9rem; /* Adjust font size on smaller screens */
+  }
 `;
 
 const Discover = () => {
@@ -58,7 +85,7 @@ const Discover = () => {
     <DiscoverSection>
       <Content>
         <Title>Dairy that Delivers Deliciousness!</Title>
-        <Text>We are a dairy company focusd on delivering quality value to our customer.</Text>
+        <Text>We are a dairy company focused on delivering quality value to our customers.</Text>
         <DiscoverButton>Learn More</DiscoverButton>
       </Content>
     </DiscoverSection>

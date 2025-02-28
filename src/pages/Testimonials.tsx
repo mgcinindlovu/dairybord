@@ -11,6 +11,7 @@ import card5 from '../assets/pic2.jpg';
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
 import { FaQuoteLeft, FaQuoteRight } from 'react-icons/fa';
+
 const TestimonialsContainer = styled.div`
   font-family: "Marhey";
   display: grid;
@@ -19,7 +20,7 @@ const TestimonialsContainer = styled.div`
 /* ====== HERO SECTION ====== */
 const HeroSection = styled.section`
   height: 80vh;
-
+margin-top:-80px;
   h3 {
     font-size: 2.5rem;
     font-weight: 100;
@@ -33,16 +34,29 @@ const HeroSection = styled.section`
     background-repeat: no-repeat;
     font-family: "Marhey";
   }
+
+  @media (max-width: 768px) {
+    h3 {
+      font-size: 2rem;
+      padding: 80% 0 0 5%;
+    }
+  }
 `;
 
 /* ====== INFO SECTION ====== */
 const InfoSection = styled.section`
-height:50vh;
+  height: 50vh;
   display: flex;
   align-items: center;
   padding: 10px;
   gap: 30px;
   margin-top: 250px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 120px;
+  }
 `;
 
 const LeftText = styled.div`
@@ -51,7 +65,7 @@ const LeftText = styled.div`
 
   h3 {
     font-size: 2rem;
-    color: #283e7e;
+    color: #000000;
   }
 
   p {
@@ -59,12 +73,21 @@ const LeftText = styled.div`
     color: #555;
     line-height: 1.5;
   }
+
+  @media (max-width: 768px) {
+    text-align: center;
+  }
 `;
 
 const RightImage = styled.div`
   flex: 1;
   display: flex;
   justify-content: center;
+
+  @media (max-width: 768px) {
+    flex: 1;
+    width: 100%;
+  }
 `;
 
 const InfoImage = styled.img`
@@ -77,8 +100,13 @@ const CardsSection = styled.section`
   text-align: center;
   padding: 50px;
 
-  h3{
+  h3 {
     font-size: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    padding: 30px;
+    margin-top:100px;
   }
 `;
 
@@ -99,45 +127,53 @@ const CardsContainer = styled.div`
 `;
 
 const Card = styled.div<{ active?: boolean }>`
-  background: ${({ active }) => (active ? '#283e7e' : '#fff')}; // Change to blue when active
+  background: ${({ active }) => (active ? '#283e7e' : '#fff')}; 
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
   text-align: center;
-  transition: transform 0.3s, background-color 0.3s; // Add transition for background
+  transition: transform 0.3s, background-color 0.3s; 
   cursor: pointer;
 
   &:hover {
-    background: #1e2f5d; // Darker blue on hover
+    background: #1e2f5d;
     transform: scale(1.05);
   }
 
   h4 {
-    color: ${({ active }) => (active ? '#fff' : '#000')}; // Change text color when active
+    color: ${({ active }) => (active ? '#fff' : '#000')};
   }
-  span{
+
+  span {
     font-size: 60px;
   }
-  div{
-    display:flex;
-  }
+
   div {
     display: flex;
     gap: 10px;
-   
   }
-  div p{
+
+  div p {
     font-size: 18px;
     color: #000000;
     margin-left: 150px;
   }
 
+  @media (max-width: 768px) {
+    div p {
+      margin-left: 0;
+    }
+  }
 `;
 
 const CardImage = styled.img`
   width: 20%;
   border-radius: 100%;
   margin-bottom: 10px;
+
+  @media (max-width: 768px) {
+    width: 30%;
+  }
 `;
 
 const CardTitle = styled.h4`
@@ -149,13 +185,14 @@ const CardDescription = styled.p`
   font-size: 1rem;
   color: #666;
 `;
+
 const Button = styled.button`
   font-family: 'Marhey';
-   padding:0.5rem 2rem;
+  padding: 0.5rem 2rem;
   font-size: 16px;
   font-weight: 500;
   color: white;
-  background-color: #283E7E; 
+  background-color: #283E7E;
   border: 1px solid #283E7E;
   border-radius: 50px;
   cursor: pointer;
@@ -163,20 +200,26 @@ const Button = styled.button`
 
   &:hover {
     color: #283E7E;
-    background-color: white; 
+    background-color: white;
   }
 
   &:focus {
     outline: none;
   }
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+    padding: 0.4rem 1.5rem;
+  }
 `;
+
 const ButtonContainer = styled.div`
   display: flex;
   gap: 5px;
 `;
 
+// Testimonials Component
 const Testimonials: React.FC = () => {
-  // State to track the active card
   const [activeCard, setActiveCard] = React.useState<number | null>(null);
 
   return (
@@ -196,11 +239,10 @@ const Testimonials: React.FC = () => {
           <p>
             Dairibord Limited Holdings, the best dairy product provider in Zimbabwe, loved by customers countrywide.
           </p>
-          <ButtonContainer> 
-          <Button >Our Brands</Button> 
-        </ButtonContainer>
+          <ButtonContainer>
+            <Button>Our Brands</Button>
+          </ButtonContainer>
         </LeftText>
-      
       </InfoSection>
 
       {/* Cards Section */}
@@ -208,17 +250,17 @@ const Testimonials: React.FC = () => {
         <h3>Customer Testimonials</h3>
         <CardsContainer>
           <Card
-            active={activeCard === 0} // Check if this card is active
-            onMouseEnter={() => setActiveCard(0)} // Set active card on hover
-            onMouseLeave={() => setActiveCard(null)} // Remove active card on mouse leave
-          > 
+            active={activeCard === 0}
+            onMouseEnter={() => setActiveCard(0)}
+            onMouseLeave={() => setActiveCard(null)}
+          >
             <div><p><FaQuoteLeft /></p></div>
             <CardDescription>
-             
               "I survived my exams thanks to Chimombe. Midnight study sessions were a breeze!"
             </CardDescription>
             <div><CardImage src={card1} alt="Customer 1" />
-            <CardTitle>Tino Chikanga</CardTitle></div>
+              <CardTitle>Tino Chikanga</CardTitle>
+            </div>
           </Card>
           <Card
             active={activeCard === 1}
@@ -289,9 +331,7 @@ const Testimonials: React.FC = () => {
       </CardsSection>
       <Contact />
       <Footer />
-
     </TestimonialsContainer>
-    
   );
 };
 

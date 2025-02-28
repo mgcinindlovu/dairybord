@@ -6,8 +6,7 @@ import styled from 'styled-components';
 import image from '../assets/pic1.jpg';
 import image2 from '../assets/pic2.jpg';
 import image3 from '../assets/pic3.jpg';
-import { FaQuoteLeft, FaQuoteRight } from 'react-icons/fa';
-
+import { FaQuoteLeft } from 'react-icons/fa';
 
 // Sample data for testimonial cards
 const testimonials = [
@@ -44,14 +43,20 @@ const Container = styled.div`
   text-align: left;
   font-family: "Marhey";
 
-  h1{
+  h1 {
     font-size: 48px;
     font-weight: 400;
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 32px; /* Reduced font size for smaller screens */
+    }
   }
 `;
 
 const TestimonialCard = styled.div<{ isActive: boolean }>`
- width: 300px;
+  width: 300px;
   cursor: pointer;
   background: ${({ isActive }) => (isActive ? '#283E7E' : '#fff')};
   color: ${({ isActive }) => (isActive ? '#fff' : '#000')};
@@ -59,20 +64,18 @@ const TestimonialCard = styled.div<{ isActive: boolean }>`
   padding: 50px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s, box-shadow 0.3s, filter 0.3s, background 0.3s, color 0.3s;
-  border: ${({ isActive }) => (isActive ? '2px solid #283E7E' : '2px  solid #000000')};
+  border: ${({ isActive }) => (isActive ? '2px solid #283E7E' : '2px solid #000000')};
   box-shadow: ${({ isActive }) =>
     isActive ? '0 4px 15px rgba(0, 123, 255, 0.5)' : '0 2px 10px rgba(0, 0, 0, 0.1)'};
   transform: ${({ isActive }) => (isActive ? 'scale(1.1)' : 'scale(1)')};
   filter: ${({ isActive }) => (isActive ? 'none' : 'blur(2px) opacity(0.5)')};
 
-  
-
   div {
     display: flex;
     gap: 10px;
-   
   }
-  div p{
+  
+  div p {
     font-size: 18px;
     color: #ffffff;
     margin-left: 130px;
@@ -126,11 +129,20 @@ const Testimonial = () => {
       <Swiper
         onSwiper={(swiper: SwiperType) => (swiperRef.current = swiper)} // Specify the type for swiper
         spaceBetween={10}
-        slidesPerView={3}
+        slidesPerView={1} // Default slides per view is 1 for mobile
         centeredSlides={true}
         loop={true}
         onSlideChange={(swiper: SwiperType) => setActiveIndex(swiper.realIndex)} // Explicitly define type for swiper
         style={{ width: '100%', height: '400px' }}
+        breakpoints={{
+          768: {
+            slidesPerView: 2, // 2 slides on medium screens
+          },
+          1024: {
+            slidesPerView: 3, // 3 slides on larger screens
+          },
+          
+        }}
       >
         {testimonials.map((testimonial, index) => (
           <SwiperSlide key={testimonial.id}>

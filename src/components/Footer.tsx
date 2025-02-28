@@ -7,52 +7,50 @@ import { FaFacebook, FaInstagram, FaTwitter, FaGoogle } from "react-icons/fa";
 const FooterContainer = styled.footer`
   background-color: #000000;
   color: #ffffff;
-  padding: 40px 160px;
-  display: grid;
-  font-family: "Marhey";
-  text-align: center;
-  justify-content:center;
+  display: grid; /* Changed from grid to flex for easier responsiveness */
+  flex-wrap: wrap; /* Allow wrapping of columns */
+  justify-content: center;
   align-items: center;
+  padding: 20px; /* Added padding for better spacing */
+  font-family: "Marhey";
 
   @media (max-width: 768px) {
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
+    flex-direction: column; /* Stack columns on smaller screens */
+    text-align: center; /* Center text */
   }
 `;
 
 const Column = styled.div`
   flex: 1;
-  min-width: 250px;
   display: flex;
   flex-direction: column;
-  gap: 60px;
+  gap: 20px; /* Reduced gap for better spacing on smaller screens */
+  align-items: center; /* Center items within each column */
+
+  @media (max-width: 768px) {
+    gap: 15px; /* Adjusted gap for smaller screens */
+  }
 `;
 
 const Logo = styled.h3`
   color: #007bff;
   font-size: 24px;
+
+  img {
+    max-height: 50px; /* Control logo size */
+  }
 `;
 
-
-
-const ContactInfo = styled.p`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 16px;
-`;
 const NavLinks = styled.nav<{ linkColor: string }>`
   display: flex;
-  gap: 80px;
-
+  gap: 40px; /* Adjusted gap for spacing */
+  justify-content: center; /* Center navigation links */
 
   a {
-    margin-top: 15px;
     color: #ffffff;
     text-decoration: none;
     font-size: 16px;
-  font-weight: 400;
+    font-weight: 400;
     transition: color 0.3s ease-in-out;
 
     &:hover {
@@ -60,13 +58,19 @@ const NavLinks = styled.nav<{ linkColor: string }>`
       color: ${(props) => props.linkColor}; 
     }
   }
+
+  @media (max-width: 768px) {
+    flex-direction: column; /* Stack links vertically */
+    gap: 10px; /* Adjust gap for smaller screens */
+  }
 `;
+
 const SocialContainer = styled.div`
   display: flex;
-  gap: 45px;
+  gap: 25px; /* Reduced gap for spacing */
   align-items: center;
-  justify-content:center;
-  margin-top: 50px;
+  justify-content: center;
+  margin-top: 20px; /* Adjusted margin for better spacing */
 `;
 
 const SocialLink = styled.a`
@@ -79,11 +83,12 @@ const SocialLink = styled.a`
     color: #007bff;
   }
 `;
+
 const StyledHr = styled.hr`
   width: 100%;
   border: 1px solid #ffffff;
- 
   opacity: 0.3;
+  margin: 20px 0; /* Added margin for spacing */
 `;
 
 const Footer: React.FC = () => {
@@ -92,39 +97,41 @@ const Footer: React.FC = () => {
     <FooterContainer>
       {/* First Column - Logo and Description */}
       <Column>
-        <Logo>  <img src={logo} alt="MyBrand Logo" /> </Logo>
-      
+        <Logo>
+          <img src={logo} alt="MyBrand Logo" />
+        </Logo>
       </Column>
 
-      {/* Second Column - Location */}
-      <NavLinks linkColor={fixedLinkColor}>
-        <Link to="/">Home</Link>
-        <Link to="/about">About Us</Link>
-        <Link to="/blog">Blog</Link>
-        <Link to="/testimonials">Testimonials</Link>
-        <Link to="/contact">Contact Us</Link>
-       
-      </NavLinks>
-       {/* Horizontal Line */}
-      <StyledHr />
-      {/* Third Column - Contact Information */}
+      {/* Second Column - Navigation Links */}
       <Column>
-       
-     
-      <SocialContainer>
-      <SocialLink href="https://facebook.com" target="_blank">
-        <FaFacebook />
-      </SocialLink>
-      <SocialLink href="https://instagram.com" target="_blank">
-        <FaInstagram />
-      </SocialLink>
-      <SocialLink href="https://twitter.com" target="_blank">
-        <FaTwitter />
-      </SocialLink>
-      <SocialLink href="https://google.com" target="_blank">
-        <FaGoogle />
-      </SocialLink>
-    </SocialContainer>
+        <NavLinks linkColor={fixedLinkColor}>
+          <Link to="/">Home</Link>
+          <Link to="/about">About Us</Link>
+          <Link to="/blog">Blog</Link>
+          <Link to="/testimonials">Testimonials</Link>
+          <Link to="/contact">Contact Us</Link>
+        </NavLinks>
+      </Column>
+      
+      {/* Horizontal Line */}
+      <StyledHr />
+      
+      {/* Third Column - Social Media Links */}
+      <Column>
+        <SocialContainer>
+          <SocialLink href="https://www.facebook.com/profile.php?id=61573841184314" target="_blank">
+            <FaFacebook />
+          </SocialLink>
+          <SocialLink href="https://instagram.com" target="_blank">
+            <FaInstagram />
+          </SocialLink>
+          <SocialLink href="https://twitter.com" target="_blank">
+            <FaTwitter />
+          </SocialLink>
+          <SocialLink href="https://google.com" target="_blank">
+            <FaGoogle />
+          </SocialLink>
+        </SocialContainer>
       </Column>
     </FooterContainer>
   );
