@@ -4,7 +4,7 @@ import styled from "styled-components";
 import logo from "../assets/logo.png";
 
 const HeaderContainer = styled.header`
- 
+ padding: 10px 0;
   display: flex;
   justify-content: space-evenly;
   gap: 80px;
