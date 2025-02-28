@@ -4,7 +4,7 @@ import styled from "styled-components";
 import logo from "../assets/logo.png";
 
 const HeaderContainer = styled.header`
-  padding: 1rem 0;
+ 
   display: flex;
   justify-content: space-evenly;
   gap: 80px;
@@ -23,6 +23,7 @@ const HeaderContainer = styled.header`
     flex-direction: column;
     align-items: flex-start;
     padding-left: 50px;
+    gap: 20px;
     
   }
 `;
