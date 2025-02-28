@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"; 
 import styled from "styled-components";
 import logo from "../assets/logo.png";
 
@@ -7,7 +7,7 @@ const HeaderContainer = styled.header`
   padding: 1rem 0;
   display: flex;
   justify-content: space-evenly;
-  gap: 180px;
+  gap: 80px;
   align-items: center;
   background: #ffffffd8;
   color: #000;
@@ -17,12 +17,13 @@ const HeaderContainer = styled.header`
   z-index: 10;
   font-family: "Marhey", sans-serif;
   width: 100%;
- 
+
 
   @media (max-width: 768px) {
     flex-direction: column;
     align-items: flex-start;
-    padding: 1rem;
+    padding-left: 50px;
+    
   }
 `;
 
@@ -51,7 +52,7 @@ const NavLinks = styled.nav<{ linkColor: string; isOpen: boolean }>`
       text-decoration: underline;
       color: ${(props) => props.linkColor}; 
     }
-    
+   
   }
   .btn{
       color:white;
@@ -66,13 +67,11 @@ const NavLinks = styled.nav<{ linkColor: string; isOpen: boolean }>`
   }
 `;
 
-const Hamburger = styled.div<{ isOpen: boolean }>`
+const Hamburger = styled.div`
   display: none;
   flex-direction: column;
   cursor: pointer;
-  position: relative;
-  z-index: 20;
-margin-left:5%;
+
   div {
     width: 30px;
     height: 3px;
@@ -81,22 +80,9 @@ margin-left:5%;
     transition: all 0.3s ease;
   }
 
-  ${({ isOpen }) =>
-    isOpen &&
-    `
-    div:nth-child(1) {
-      transform: translateY(8px) rotate(45deg);
-    }
-    div:nth-child(2) {
-      opacity: 0;
-    }
-    div:nth-child(3) {
-      transform: translateY(-8px) rotate(-45deg);
-    }
-  `}
-
   @media (max-width: 768px) {
     display: flex;
+    padding-left: 10px;
   }
 `;
 
@@ -111,21 +97,45 @@ const ButtonsContainer = styled.div`
 `;
 
 const Button = styled(Link)<{ primary?: boolean }>`
-  padding:10px 20px;
+  padding: 10px;
   font-size: 15px;
   color: white;
-  background-color: ${({ primary }) => (primary ? "white" : "#283E7E")};
-  border: ${({ primary }) => (primary ? "1px solid #283E7E" : "none")};
-  border-radius: 35px;
+  background-color: #283E7E; 
+  border: none;
+  border-radius: 50px;
   text-decoration: none;
+  border-radius: 35px;
   transition: all 0.3s ease-in-out;
-  color: ${({ primary }) => (primary ? "#283E7E" : "white")};
 
-  &:hover {
-    background: ${({ primary }) => (primary ? "#0044ff" : "transparent")};
-    color: ${({ primary }) => (primary ? "white" : "#0044ff")};
-  }
+  ${({ primary }) =>
+    primary
+      ? `
+      padding: 10px  50px 0 50px;
+      font-size: 15px;
+      color: white;
+      background-color: #283E7E; 
+      border: none;
+      border-radius: 50px;
 
+      &:hover {
+        background: transparent;
+        color: #0044ff;
+      }
+    `
+      : `
+      padding: 10px  50px 0 50px;
+      font-size: 15px;
+      color: #283E7E;
+      background-color: #ffffff; 
+      border: 1px solid #283E7E;
+      border-radius: 50px;
+
+      &:hover {
+        background: #0044ff;
+        color: white;
+      }
+    `}
+  
   @media (max-width: 768px) {
     width: 100%;
     text-align: center;
@@ -147,12 +157,12 @@ const Header: React.FC = () => {
   return (
     <HeaderContainer>
       <Logo src={logo} alt="MyBrand Logo" />
-      <Hamburger onClick={toggleMenu} isOpen={isOpen}>
+      <Hamburger onClick={toggleMenu}>
         <div />
         <div />
         <div />
       </Hamburger>
-      <div>
+      <div className="nav-links">
         <NavLinks linkColor={fixedLinkColor} isOpen={isOpen}>
           <Link to="/">Home</Link>
           <Link to="/about">About Us</Link>
@@ -160,9 +170,8 @@ const Header: React.FC = () => {
           <Link to="/testimonials">Testimonials</Link>
           <Link to="/contact">Contact Us</Link>
           <ButtonsContainer>
-          <Button className="btn"  to="/brands">Our Brands</Button>
-          <Button to="/about" primary>Explore</Button>
-         
+          <Button className="btn" to="/brands" primary>Our Brands</Button>
+          <Button to="/about">Explore</Button>
         </ButtonsContainer>
         </NavLinks>
         
