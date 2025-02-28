@@ -70,6 +70,7 @@ const TestimonialCard = styled.div<{ isActive: boolean }>`
   transform: ${({ isActive }) => (isActive ? 'scale(1.1)' : 'scale(1)')};
   filter: ${({ isActive }) => (isActive ? 'none' : 'blur(2px) opacity(0.5)')};
 
+
   div {
     display: flex;
     gap: 10px;
@@ -103,6 +104,9 @@ const TestimonialText = styled.p`
   margin: 5px 0;
   position: relative;
 
+  @media (max-width: 768px) {
+    padding-right: 20px;
+    }
   span {
     justify-content: center;
     color: black;

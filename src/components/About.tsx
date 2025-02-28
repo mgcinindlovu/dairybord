@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import image1 from "../assets/milk.png";
@@ -220,13 +221,7 @@ const cards = [
     image: image9,
     backgroundColor: "#fdd78437", // Light gray
   },
-  {
-    id: 7,
-    title: "Peanut Butter",
-    description: "Creamy or crunchy, our peanut butter is made from high-quality peanuts, offering a rich, nutty flavor and a good source of protein and healthy fats. Perfect for spreading, baking, or adding to smoothies.",
-    image: image10,
-    backgroundColor: "##fdd78437", // Light gray
-  },
+ 
   {
     id: 8,
     title: "Mayonnaise",
@@ -246,6 +241,7 @@ const cards = [
 
 const About = () => {
   const [selectedCardIndex, setSelectedCardIndex] = useState(0);
+  const navigate = useNavigate(); // Create navigate function
 
   const handlePrev = () => {
     setSelectedCardIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : cards.length - 1));
@@ -281,7 +277,7 @@ const About = () => {
         <RightSection>
           <Title>{cards[selectedCardIndex]?.title}</Title>
           <Description>{cards[selectedCardIndex]?.description}</Description>
-          <ActionButton  onClick={() => alert(`More about ${cards[selectedCardIndex]?.title}`)}>
+          <ActionButton onClick={() => navigate('/brands')}>
             View Products
           </ActionButton>
         </RightSection>

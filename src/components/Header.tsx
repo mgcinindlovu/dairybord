@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; 
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../assets/logo.png";
 
 const HeaderContainer = styled.header`
- padding: 10px 0;
+  padding: 10px 0;
   display: flex;
   justify-content: space-evenly;
-  gap: 80px;
   align-items: center;
   background: #ffffffd8;
   color: #000;
@@ -18,20 +17,16 @@ const HeaderContainer = styled.header`
   font-family: "Marhey", sans-serif;
   width: 100%;
 
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: flex-start;
-    padding-left: 50px;
-    gap: 20px;
-    
+  @media (max-width: 1024px) {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 `;
 
 const Logo = styled.img`
   height: 80px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     height: 60px;
   }
 `;
@@ -51,24 +46,31 @@ const NavLinks = styled.nav<{ linkColor: string; isOpen: boolean }>`
 
     &:hover {
       text-decoration: underline;
-      color: ${(props) => props.linkColor}; 
+      color: ${(props) => props.linkColor};
     }
-   
   }
-  .btn{
-      color:white;
-    }
-  @media (max-width: 768px) {
+
+  .btn {
+    color: white;
+  }
+
+  @media (max-width: 1024px) {
     flex-direction: column;
     gap: 10px;
-    align-items: flex-start;
+    align-items: center;
     display: ${(props) => (props.isOpen ? "flex" : "none")};
     width: 100%;
-    margin-top: 10px;
+    position: fixed;
+    top: 43%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
   }
 `;
 
-const Hamburger = styled.div`
+const Hamburger = styled.div<{ isOpen: boolean }>`
   display: none;
   flex-direction: column;
   cursor: pointer;
@@ -81,19 +83,33 @@ const Hamburger = styled.div`
     transition: all 0.3s ease;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     display: flex;
-    padding-left: 10px;
   }
+
+  ${({ isOpen }) =>
+    isOpen &&
+    `
+    div:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    div:nth-child(2) {
+      opacity: 0;
+    }
+    div:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+  `}
 `;
 
 const ButtonsContainer = styled.div`
   display: flex;
   gap: 5px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     flex-direction: column;
     width: 100%;
+    align-items: center;
   }
 `;
 
@@ -137,8 +153,8 @@ const Button = styled(Link)<{ primary?: boolean }>`
       }
     `}
   
-  @media (max-width: 768px) {
-    width: 100%;
+  @media (max-width: 1024px) {
+    width: 50%;
     text-align: center;
 
     &:first-child {
@@ -158,25 +174,22 @@ const Header: React.FC = () => {
   return (
     <HeaderContainer>
       <Logo src={logo} alt="MyBrand Logo" />
-      <Hamburger onClick={toggleMenu}>
+      <Hamburger onClick={toggleMenu} isOpen={isOpen}>
         <div />
         <div />
         <div />
       </Hamburger>
-      <div className="nav-links">
-        <NavLinks linkColor={fixedLinkColor} isOpen={isOpen}>
-          <Link to="/">Home</Link>
-          <Link to="/about">About Us</Link>
-          <Link to="/blog">Blog</Link>
-          <Link to="/testimonials">Testimonials</Link>
-          <Link to="/contact">Contact Us</Link>
-          <ButtonsContainer>
+      <NavLinks linkColor={fixedLinkColor} isOpen={isOpen}>
+        <Link to="/">Home</Link>
+        <Link to="/about">About Us</Link>
+        <Link to="/blog">Blog</Link>
+        <Link to="/testimonials">Testimonials</Link>
+        <Link to="/contact">Contact Us</Link>
+        <ButtonsContainer>
           <Button className="btn" to="/brands" primary>Our Brands</Button>
           <Button to="/about">Explore</Button>
         </ButtonsContainer>
-        </NavLinks>
-        
-      </div>
+      </NavLinks>
     </HeaderContainer>
   );
 };

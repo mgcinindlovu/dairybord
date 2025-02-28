@@ -20,14 +20,14 @@ const Container = styled.div`
 
   @media (max-width: 1024px) {
     padding: 30px;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: auto; /* Allow height to be auto for smaller screens */
   }
 
   @media (max-width: 768px) {
-    justify-content: flex-start;
-    flex-direction: column;
-    height: auto; /* Allow height to be auto for smaller screens */
     text-align: left;
-    align-items:left;
+    align-items: left;
   }
 `;
 
@@ -49,9 +49,22 @@ const LeftSection = styled.div`
   padding: 20px;
   max-width: 400px;
   font-family: 'Marhey';
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Align text and button to the bottom */
+  height: 100%; /* Take full height */
+
+  @media (max-width: 1024px) {
+    max-width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+  }
 
   @media (max-width: 768px) {
-    margin:120px 0 0 0;
+    margin: 120px 0 0 0;
+    max-width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
   }
   
   h1 {
@@ -59,6 +72,10 @@ const LeftSection = styled.div`
     font-weight: 200;
     color: #fff;
     margin-bottom: 10px;
+
+    @media (max-width: 1024px) {
+      font-size: 40px; /* Adjust font size for medium screens */
+    }
 
     @media (max-width: 768px) {
       font-size: 36px; /* Smaller font size for mobile */
@@ -70,15 +87,13 @@ const LeftSection = styled.div`
     color: #ddd;
     margin-bottom: 20px;
 
+    @media (max-width: 1024px) {
+      font-size: 16px; /* Adjust font size for medium screens */
+    }
+
     @media (max-width: 768px) {
       font-size: 16px; /* Smaller font size for mobile */
     }
-  }
-
-  @media (max-width: 768px) {
-    max-width: 100%;
-    text-align: center;
-    margin-bottom: 20px;
   }
 `;
 
@@ -88,14 +103,25 @@ const RightSection = styled.div`
   flex-direction: column;
   align-items: center;
   position: relative; /* Position relative for absolute children */
+
+  @media (max-width: 1024px) {
+    width: 100%;
+    align-items: center;
+  }
 `;
 
 const CardContainer = styled.div`
-  margin: 33% 0 0 25%; /* Adjust the margin as necessary */
+  margin: 20% 0 0 25%; /* Adjust the margin as necessary */
   display: flex;
   gap: 20px;
   z-index: 2;
   font-family: 'Marhey';
+
+  @media (max-width: 1024px) {
+    margin: 0; /* Adjust margin for medium screens */
+    padding: 0;
+    justify-content: center;
+  }
 
   @media (max-width: 768px) {
     display: flex;
@@ -121,6 +147,11 @@ const Card = styled(motion.div)<{ isActive: boolean }>`
     transform: scale(1.05);
     
 }
+  @media (max-width: 1024px) {
+    width: 120px; /* Adjust card size for medium screens */
+    height: 120px; /* Adjust card size for medium screens */
+  }
+
   @media (max-width: 768px) {
     width: 70px; /* Smaller card size for mobile */
     height: 70px; /* Smaller card size for mobile */
@@ -141,6 +172,10 @@ const CardTitle = styled.div`
   font-size: 18px;
   font-weight: bold;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+
+  @media (max-width: 1024px) {
+    font-size: 14px; /* Adjust font size for medium screens */
+  }
 
   @media (max-width: 768px) {
     font-size: 10px;
@@ -196,6 +231,10 @@ const PaginationContainer = styled.div`
   margin-top: 20px;
   margin-left: 200px;
 
+  @media (max-width: 1024px) {
+    margin-left: 100px; /* Adjust margin for medium screens */
+  }
+
   @media (max-width: 768px) {
     margin-left: 0; /* Center pagination on mobile */
   }
@@ -221,8 +260,12 @@ const ArrowContainer = styled.div`
   transform: translateY(-50%);
   z-index: 2; /* Ensure arrows are above other content */
 
+  @media (max-width: 1024px) {
+    left: 75%; /* Adjust position for medium screens */
+  }
+
   @media (max-width: 768px) {
-    left: 35%;
+    display: none; /* Hide arrows on smaller screens */
   }
 `;
 
@@ -248,7 +291,12 @@ const Arrow = styled.button<{ isLeft?: boolean; isActive?: boolean }>`
     transform: scale(0.9); /* Adds a slight press effect */
   }
 
+  @media (max-width: 1024px) {
+    font-size: 18px; /* Adjust font size for medium screens */
+  }
+
   @media (max-width: 768px) {
+    display: none;
     font-size: 15px;
   }
 `;
@@ -272,6 +320,10 @@ const ActionButton = styled.button`
 
   &:focus {
     outline: none;
+  }
+
+  @media (max-width: 768px) {
+    align-self: center; /* Center the button on mobile */
   }
 `;
 
@@ -324,7 +376,7 @@ const Slider = () => {
       <LeftSection>
         <h1>{titles[selectedCardIndex]}</h1>
         <p>{cards[selectedCardIndex].description}</p>
-        <ActionButton >Learn More</ActionButton>
+        <ActionButton>Learn More</ActionButton>
       </LeftSection>
       <RightSection>
         <CardContainer>

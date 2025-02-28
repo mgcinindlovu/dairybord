@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import emailjs from 'emailjs-com';
 
 const Container = styled.div`
   display: flex;
@@ -9,6 +10,7 @@ const Container = styled.div`
   font-family: "Marhey";
   background-color: #000036;
   color: white;
+  text-align: left;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -32,8 +34,6 @@ const TextContainer = styled.div`
   }
 
   @media (max-width: 768px) {
-
-
     h1 {
       margin-top: 30px;
       font-size: 24px;
@@ -128,7 +128,41 @@ const Label = styled.label`
   }
 `;
 
+const Popup = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #283e7e;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  z-index: 1000;
+`;
+
 const Contact = () => {
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    emailjs.sendForm('service_c52zigd', 'template_wdse3og', e.currentTarget, '5zRvzvVjahhyLuZ7X')
+      .then((result) => {
+        console.log(result.text);
+        setIsPopupVisible(true);
+      }, (error) => {
+        console.log(error.text);
+      });
+
+    e.currentTarget.reset();
+  };
+
+  const handleClosePopup = () => {
+    setIsPopupVisible(false);
+  };
+
   return (
     <Container>
       <TextContainer>
@@ -150,18 +184,24 @@ const Contact = () => {
         </div>
       </TextContainer>
       <FormContainer>
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <Label>Name</Label>
-          <Input type="text" placeholder="Enter Name" required />
+          <Input type="text" name="name" placeholder="Enter Name" required />
           <Label>Surname</Label>
-          <Input type="text" placeholder="Enter Surname" required />
+          <Input type="text" name="surname" placeholder="Enter Surname" required />
           <Label>Email</Label>
-          <Input type="email" placeholder="Enter Email" required />
+          <Input type="email" name="email" placeholder="Enter Email" required />
           <Label>Message</Label>
-          <TextArea rows={4} placeholder="Enter Message" required />
+          <TextArea name="message" rows={4} placeholder="Enter Message" required />
           <Button type="submit">Submit</Button>
         </Form>
       </FormContainer>
+      {isPopupVisible && (
+        <Popup>
+          <p>Message Sent!</p>
+          <Button onClick={handleClosePopup}>Close</Button>
+        </Popup>
+      )}
     </Container>
   );
 };
