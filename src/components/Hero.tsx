@@ -117,7 +117,10 @@ const Card = styled(motion.div)<{ isActive: boolean }>`
   transition: transform 0.3s ease, border 0.3s ease;
   border: ${({ isActive }) => (isActive ? "2px solid #283E7E" : "none")}; // Border for active card
   transform: ${({ isActive }) => (isActive ? "scale(1.05)" : "scale(1)")} ; // Slightly scale active card
-
+&:hover {
+    transform: scale(1.05);
+    
+}
   @media (max-width: 768px) {
     width: 70px; /* Smaller card size for mobile */
     height: 70px; /* Smaller card size for mobile */
