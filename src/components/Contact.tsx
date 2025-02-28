@@ -142,7 +142,7 @@ const Contact = () => {
         </div>
         <div>
           <h3>Email</h3>
-          <p>info@example.com</p> {/* Corrected email placeholder */}
+          <p>feedback@dairibord.co.zw</p> {/* Corrected email placeholder */}
         </div>
         <div>
           <h3>Address</h3>

@@ -122,13 +122,13 @@ const Footer: React.FC = () => {
           <SocialLink href="https://www.facebook.com/profile.php?id=61573841184314" target="_blank">
             <FaFacebook />
           </SocialLink>
-          <SocialLink href="https://instagram.com" target="_blank">
+          <SocialLink href="https://www.instagram.com/DairyBoard" target="_blank">
             <FaInstagram />
           </SocialLink>
-          <SocialLink href="https://twitter.com" target="_blank">
+          <SocialLink href="https://twitter.com/DairyBoard" target="_blank">
             <FaTwitter />
           </SocialLink>
-          <SocialLink href="https://google.com" target="_blank">
+          <SocialLink href="feedback@dairibord.co.zw" target="_blank">
             <FaGoogle />
           </SocialLink>
         </SocialContainer>

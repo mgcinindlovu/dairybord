@@ -232,7 +232,7 @@ const Arrow = styled.button<{ isLeft?: boolean; isActive?: boolean }>`
   font-weight: 100;
   border-radius: 100%;
   color: ${({ isLeft, isActive }) =>
-    isActive ? "#ffffff" : isLeft ? "#283E7E" : "#ffffff"};
+    isActive ? "#283E7E" : isLeft ? "#283E7E" : "#ffffff"};
   padding: 10px;
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, transform 0.2s;
 
