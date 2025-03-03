@@ -24,6 +24,12 @@ const DiscoverSection = styled.section`
     justify-content: center;
     text-align: center;
   }
+
+  @media (max-width: 1024px) {
+    
+    height: 50vh; /* Allow height to adjust */
+    
+  }
 `;
 
 const Content = styled.div`

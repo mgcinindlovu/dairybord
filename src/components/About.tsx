@@ -21,6 +21,10 @@ const Container = styled.div`
   color: black;
   gap: 60px;
   font-family: 'Marhey';
+
+  @media (max-width: 1024px) {
+   height: 50vh;
+  }
 `;
 
 const HeaderSection = styled.div`

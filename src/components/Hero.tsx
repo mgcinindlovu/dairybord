@@ -16,6 +16,7 @@ const Container = styled.div`
   height: 100vh;
   position: relative;
   overflow: hidden;
+   padding: 0 50px 0 50px;
 
   @media (max-width: 1024px) {
     padding: 30px;
@@ -144,8 +145,8 @@ const CardContainer = styled.div`
 const Card = styled(motion.div)<{ isActive: boolean }>`
   font-size: 5px;
   font-weight: 100;
-  width: 150px;
-  height: 150px;
+  width: 140px;
+  height: 140px;
   border-radius: 15px;
   overflow: hidden;
   cursor: pointer;
@@ -272,7 +273,7 @@ const Dot = styled.div<{ active: boolean }>`
 
 const ArrowContainer = styled.div`
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 85%;
   width: 100%;
   gap: 40px;
