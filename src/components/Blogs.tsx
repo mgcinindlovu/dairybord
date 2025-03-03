@@ -41,7 +41,7 @@ const blogPosts = [
 ];
 
 const Container = styled.div`
-  margin-top: 10%;
+  margin-top: 18%;
   padding: 30px;
   text-align: left;
   font-family: "Marhey";
