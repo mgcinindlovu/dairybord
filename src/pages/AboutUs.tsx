@@ -18,6 +18,7 @@ import image12 from "../assets/Rectangle 69.jpg";
 import image13 from "../assets/Rectangle 70.jpg";
 
 const AboutContainer = styled.div`
+
   display: grid;
 `;
 

@@ -14,9 +14,10 @@ const Container = styled.div`
 
   @media (max-width: 768px) {
     flex-direction: column;
-    padding: 20px;
+    padding: 20px 0;
     gap: 30px; /* Reduced gap for better spacing on smaller screens */
   }
+  
 `;
 
 const TextContainer = styled.div`
@@ -54,7 +55,7 @@ const FormContainer = styled.div`
   padding: 20px;
 
   @media (max-width: 768px) {
-    width: 100%;
+    
     display: flex; /* Ensures the form container takes full width */
     justify-content: center; /* Centering the form */
   }
@@ -70,7 +71,7 @@ const Form = styled.form`
   border-radius: 10px;
 
   @media (max-width: 768px) {
-    margin-right: 40px;
+   
     width: 70%; /* Adjusted to use a percentage for smaller screens */
     max-width: 400px; /* Optional: set a max width for the form */
   }

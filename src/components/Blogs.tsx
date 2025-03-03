@@ -53,7 +53,7 @@ const Container = styled.div`
   }
 
   @media (max-width: 768px) {
-    margin-top: 90%;
+    margin-top: 200%;
     padding: 20px;
     h1 {
       font-size: 32px; /* Reduced font size for smaller screens */

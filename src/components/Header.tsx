@@ -21,7 +21,7 @@ const HeaderContainer = styled.header`
     padding-left: 20px;
     padding-right: 20px;
  
-    gap: 400px;
+  
   }
 `;
 
