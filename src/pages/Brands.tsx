@@ -226,12 +226,12 @@ const Brands: React.FC = () => {
   ];
 
   const bestSellers = [
-    { image: image7, text: "Best Seller 1" },
-    { image: image1, text: "Best Seller 2" },
-    { image: image2, text: "Best Seller 3" },
-    { image: image5, text: "Best Seller 4" },
-    { image: image6, text: "Best Seller 5" },
-    { image: image4, text: "Best Seller 6" },
+    { image: image7, text: "Full-Cream-Milk" },
+    { image: image1, text: "Traditional-Mahewu" },
+    { image: image2, text: "Tomato-Sauce" },
+    { image: image5, text: "Orange-2L" },
+    { image: image6, text: "Salad-Cream" },
+    { image: image4, text: "Lacto" },
   ];
 
   const handleCardClick = (product: { title: string; image: string }) => {
