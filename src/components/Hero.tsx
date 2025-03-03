@@ -14,15 +14,17 @@ const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   height: 100vh;
-  padding: 50px;
   position: relative;
   overflow: hidden;
 
   @media (max-width: 1024px) {
     padding: 30px;
     flex-direction: column;
+    text-align: left;
     justify-content: flex-start;
-    height: auto; /* Allow height to be auto for smaller screens */
+    align-items: left;
+    height: auto;
+    margin-top:10%; /* Allow height to be auto for smaller screens */
   }
 
   @media (max-width: 768px) {
@@ -46,13 +48,12 @@ const Background = styled(motion.div)`
 
 const LeftSection = styled.div`
   flex: 1;
-  padding: 20px;
+  padding:0 20px;
   max-width: 400px;
   font-family: 'Marhey';
   display: flex;
   flex-direction: column;
   justify-content: flex-end; /* Align text and button to the bottom */
-  height: 100%; /* Take full height */
 
   @media (max-width: 1024px) {
     max-width: 100%;
@@ -74,11 +75,13 @@ const LeftSection = styled.div`
     margin-bottom: 10px;
 
     @media (max-width: 1024px) {
-      font-size: 40px; /* Adjust font size for medium screens */
+      font-size: 80px; /* Adjust font size for medium screens */
+      margin-right: 4rem;
     }
 
     @media (max-width: 768px) {
       font-size: 36px; /* Smaller font size for mobile */
+   
     }
   }
 
@@ -88,7 +91,8 @@ const LeftSection = styled.div`
     margin-bottom: 20px;
 
     @media (max-width: 1024px) {
-      font-size: 16px; /* Adjust font size for medium screens */
+      font-size: 25px; /* Adjust font size for medium screens */
+      
     }
 
     @media (max-width: 768px) {
@@ -102,11 +106,18 @@ const RightSection = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative; /* Position relative for absolute children */
-
+  position: relative; 
+  margin-top:10%;
+  
+@media (max-width: 1024px) {
+  width: 100%;
+    align-items: center;
+    margin-left: 25%;
+}
   @media (max-width: 1024px) {
     width: 100%;
     align-items: center;
+    margin-left: -1%;
   }
 `;
 
@@ -148,8 +159,8 @@ const Card = styled(motion.div)<{ isActive: boolean }>`
     
 }
   @media (max-width: 1024px) {
-    width: 120px; /* Adjust card size for medium screens */
-    height: 120px; /* Adjust card size for medium screens */
+    width: 160px; /* Adjust card size for medium screens */
+    height: 160px; /* Adjust card size for medium screens */
   }
 
   @media (max-width: 768px) {
@@ -232,11 +243,11 @@ const PaginationContainer = styled.div`
   margin-left: 200px;
 
   @media (max-width: 1024px) {
-    margin-left: 100px; /* Adjust margin for medium screens */
+    margin-right: 200px; /* Adjust margin for medium screens */
   }
 
   @media (max-width: 768px) {
-    margin-left: 0; /* Center pagination on mobile */
+    margin-right: 0; /* Center pagination on mobile */
   }
 `;
 
@@ -244,10 +255,19 @@ const Dot = styled.div<{ active: boolean }>`
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background-color: ${({ active }) => (active ? "#283E7E" : "rgba(255, 255, 255, 0.5)")};
+  background-color: ${({ active }) => (active ? "#283E7E" : "rgb(255, 255, 255)")};
   margin: 0 5px;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
+
+  @media (max-width: 1024px) {
+    width: 20px;
+    height: 20px;
+  }
+
+  @media (max-width: 768px) {
+    margin-left: 0; /* Center pagination on mobile */
+  }
 `;
 
 const ArrowContainer = styled.div`
@@ -292,7 +312,8 @@ const Arrow = styled.button<{ isLeft?: boolean; isActive?: boolean }>`
   }
 
   @media (max-width: 1024px) {
-    font-size: 18px; /* Adjust font size for medium screens */
+    font-size: 18px;
+    display: none;
   }
 
   @media (max-width: 768px) {
@@ -303,15 +324,17 @@ const Arrow = styled.button<{ isLeft?: boolean; isActive?: boolean }>`
 
 const ActionButton = styled.button`
   font-family: 'Marhey';
-  padding: 0.5rem 2rem;
+  padding: 10px;
   font-size: 16px;
   font-weight: 500;
+  width: 150px;
   color: white;
   background-color: #283E7E; 
   border: 1px solid #283E7E;
   border-radius: 50px;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
+
 
   &:hover {
     color: #283E7E;
@@ -323,6 +346,10 @@ const ActionButton = styled.button`
   }
 
   @media (max-width: 768px) {
+    align-self: center; /* Center the button on mobile */
+  }
+
+  @media (max-width: 1024px) {
     align-self: center; /* Center the button on mobile */
   }
 `;

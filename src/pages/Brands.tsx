@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import styled, { keyframes } from "styled-components";
+import React, { useState, useEffect, useRef } from "react";
+import styled from "styled-components";
 import Header from "../components/Header";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
@@ -150,15 +150,15 @@ const ModalContent = styled.div`
   background: #fff;
   padding: 20px;
   border-radius: 10px;
-  width: 100%;
-  max-height: 80vh; /* Set a maximum height */
+  width: 50%;
+  max-height: 50vh; /* Set a maximum height */
   overflow-y: auto; /* Enable vertical scrolling */
   text-align: center;
   position: relative; /* Position relative for absolute children */
 `;
 
 const ModalImage = styled.img`
-  width: 100%;
+  width: 50%;
   max-height: 50vh; /* Set a maximum height for the image */
   object-fit: cover;
   border-radius: 10px;
@@ -196,28 +196,6 @@ const ProductItem = styled.div`
 const ProductTitle = styled.h4`
   font-size: 1.2rem;
   font-weight: 500;
-`;
-
-const moveUp = keyframes`
-  0% {
-    transform: translateY(100%);
-  }
-  100% {
-    transform: translateY(0);
-  }
-`;
-
-const spreadOut = keyframes`
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-`;
-
-const AnimatedCard = styled.div`
-  animation: ${moveUp} 1s ease-out forwards, ${spreadOut} 1s 1s ease-out forwards;
 `;
 
 const Brands: React.FC = () => {
@@ -304,10 +282,10 @@ const Brands: React.FC = () => {
             <ProductList>
               {modalProducts.map((product, index) => (
                 <ProductItem key={product.id}>
-                  <AnimatedCard style={{ animationDelay: `${index * 0.1}s` }}>
+                  <div>
                     <ModalImage src={product.image} alt={product.title} />
                     <ProductTitle>{product.title}</ProductTitle>
-                  </AnimatedCard>
+                  </div>
                 </ProductItem>
               ))}
             </ProductList>

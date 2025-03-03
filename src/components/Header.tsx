@@ -14,12 +14,14 @@ const HeaderContainer = styled.header`
   top: 0;
   left: 0;
   z-index: 10;
-  font-family: "Marhey", sans-serif;
+  font-family: "Marhey";
   width: 100%;
 
   @media (max-width: 1024px) {
     padding-left: 20px;
     padding-right: 20px;
+ 
+    gap: 400px;
   }
 `;
 
@@ -171,6 +173,10 @@ const Header: React.FC = () => {
     setIsOpen(!isOpen);
   };
 
+  const closeMenu = () => {
+    setIsOpen(false);
+  };
+
   return (
     <HeaderContainer>
       <Logo src={logo} alt="MyBrand Logo" />
@@ -180,14 +186,14 @@ const Header: React.FC = () => {
         <div />
       </Hamburger>
       <NavLinks linkColor={fixedLinkColor} isOpen={isOpen}>
-        <Link to="/">Home</Link>
-        <Link to="/about">About Us</Link>
-        <Link to="/blog">Blog</Link>
-        <Link to="/testimonials">Testimonials</Link>
-        <Link to="/contact">Contact Us</Link>
+        <Link to="/" onClick={closeMenu}>Home</Link>
+        <Link to="/about" onClick={closeMenu}>About Us</Link>
+        <Link to="/blog" onClick={closeMenu}>Blog</Link>
+        <Link to="/testimonials" onClick={closeMenu}>Testimonials</Link>
+        <Link to="/contact" onClick={closeMenu}>Contact Us</Link>
         <ButtonsContainer>
-          <Button className="btn" to="/brands" primary>Our Brands</Button>
-          <Button to="/about">Explore</Button>
+          <Button className="btn" to="/brands" primary onClick={closeMenu}>Our Brands</Button>
+          <Button to="/about" onClick={closeMenu}>Explore</Button>
         </ButtonsContainer>
       </NavLinks>
     </HeaderContainer>
